@@ -7,5 +7,16 @@ license = "MIT"
 homepage = "https://github.com/terry90/rs_web_token"
 repository = "https://github.com/terry90/rs_web_token"
 
+[features]
+serde_support = ["serde", "serde_derive"]
+
+[package.metadata.docs.rs]
+all-features = true
+
 [dependencies]
-rand = "0.5.4"
+rand  = "0.5.4"
+serde = { version = "1.0.70", optional = true }
+serde_derive = { version = "1.0.70", optional = true }
+
+[dev-dependencies]
+serde_json = "1.0.24"

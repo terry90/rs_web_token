@@ -1,4 +1,10 @@
 extern crate rand;
+#[cfg(feature = "serde_support")]
+#[macro_use]
+extern crate serde_derive;
+#[cfg(feature = "serde_support")]
+#[cfg(test)]
+extern crate serde_json;
 
 use rand::distributions::Alphanumeric;
 use rand::{thread_rng, Rng};
@@ -10,6 +16,7 @@ use std::str::FromStr;
 #[derive(Debug)]
 pub struct WebTokenParseError(());
 
+#[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct WebToken(String);
 
 impl WebToken {
@@ -80,6 +87,10 @@ impl FromStr for WebToken {
 #[cfg(test)]
 mod tests {
     use super::WebToken;
+    #[cfg(feature = "serde_support")]
+    use serde_json;
+    #[cfg(feature = "serde_support")]
+    use std::str::FromStr;
 
     #[test]
     fn it_generates_a_random_token_of_64_chars() {
@@ -133,5 +144,29 @@ mod tests {
 
         assert_eq!(format!("{:?}", token), s_token);
         assert_eq!(format!("{}", token), s_token);
+    }
+
+    #[cfg(feature = "serde_support")]
+    #[test]
+    fn it_is_serde() {
+        #[derive(Serialize, Deserialize)]
+        struct WebTokenTest {
+            token: WebToken,
+        }
+
+        let token = WebTokenTest {
+            token: WebToken::from_str(
+                "AmJ8JS6Jt47UiV8QaCmpgBdWawLeHVuKpbReOV6uKPLqnnfbqbMAXAXxTnWYZ7RR",
+            ).unwrap(),
+        };
+
+        let serialized = serde_json::to_string(&token).unwrap();
+        assert_eq!(
+            r#"{"token":"AmJ8JS6Jt47UiV8QaCmpgBdWawLeHVuKpbReOV6uKPLqnnfbqbMAXAXxTnWYZ7RR"}"#,
+            serialized
+        );
+
+        let deserialized: WebTokenTest = serde_json::from_str(&serialized).unwrap();
+        assert_eq!(token.token, deserialized.token)
     }
 }
