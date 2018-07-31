@@ -2,6 +2,10 @@
 name = "web_token"
 version = "0.1.0"
 authors = ["Terry Raimondo <terry.raimondo@gmail.com>"]
+description = "Easy to use Web Token for Rust"
+license = "MIT"
+homepage = "https://github.com/terry90/rs_web_token"
+repository = "https://github.com/terry90/rs_web_token"
 
 [dependencies]
 rand = "0.5.4"
