@@ -7,6 +7,8 @@ Easy to use WebToken for rust
 
 ## Usage
 
+Features: `["serde_support", "diesel_support"]`
+
 ```rust
 // Create new random token
 let new_token = WebToken::new();
