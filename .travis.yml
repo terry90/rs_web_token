@@ -1,0 +1,24 @@
+sudo: required
+language: rust
+rust:
+  - nightly
+cache: cargo
+matrix:
+  fast_finish: true
+
+jobs:
+  include:
+    - stage: Tests
+      before_script:
+        - rustup component add rustfmt-preview
+      script:
+        - cargo build
+        - cargo test
+        - cargo fmt --all -- --check
+    - stage: Coverage
+      before_script:
+        - cargo tarpaulin --help || RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --force
+
+      script:
+        - cargo tarpaulin --out Xml --ignore-tests
+        - bash <(curl -s https://codecov.io/bash)
