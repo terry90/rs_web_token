@@ -5,6 +5,3 @@ authors = ["Terry Raimondo <terry.raimondo@gmail.com>"]
 
 [dependencies]
 rand = "0.5.4"
-
-[dev-dependencies]
-tarpaulin = ""
