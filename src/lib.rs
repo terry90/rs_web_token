@@ -1,4 +1,7 @@
 extern crate rand;
+#[cfg(feature = "diesel_support")]
+#[macro_use]
+extern crate diesel_derive_newtype;
 #[cfg(feature = "serde_support")]
 #[macro_use]
 extern crate serde_derive;
@@ -17,6 +20,8 @@ use std::str::FromStr;
 pub struct WebTokenParseError(());
 
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "diesel_support", derive(DieselNewType))]
+#[derive(Clone)]
 pub struct WebToken(String);
 
 impl WebToken {

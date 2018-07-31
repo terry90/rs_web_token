@@ -7,16 +7,19 @@ license = "MIT"
 homepage = "https://github.com/terry90/rs_web_token"
 repository = "https://github.com/terry90/rs_web_token"
 
-[features]
-serde_support = ["serde", "serde_derive"]
-
 [package.metadata.docs.rs]
 all-features = true
+
+[features]
+serde_support = ["serde", "serde_derive"]
+diesel_support = ["diesel", "diesel-derive-newtype"]
 
 [dependencies]
 rand  = "0.5.4"
 serde = { version = "1.0.70", optional = true }
 serde_derive = { version = "1.0.70", optional = true }
+diesel = { version = "1.3.2", optional = true }
+diesel-derive-newtype = { version = "0.1.1", optional = true }
 
 [dev-dependencies]
 serde_json = "1.0.24"
