@@ -45,7 +45,7 @@ impl<'a> cmp::PartialEq<&'a str> for WebToken {
     }
 }
 
-impl<'a> cmp::PartialEq<String> for WebToken {
+impl cmp::PartialEq<String> for WebToken {
     fn eq(&self, other: &String) -> bool {
         &self.0 == other
     }
