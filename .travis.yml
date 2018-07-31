@@ -18,7 +18,6 @@ jobs:
     - stage: Tests (with serde support)
       script:
         - cargo test --features serde_support
-        - cargo fmt --all -- --check
     - stage: Coverage
       before_script:
         - cargo tarpaulin --help || RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --force
