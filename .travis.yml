@@ -23,5 +23,5 @@ jobs:
       before_script:
         - cargo tarpaulin --help || RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin --force
       script:
-        - cargo tarpaulin --out Xml --ignore-tests
+        - cargo tarpaulin --out Xml --ignore-tests --features=serde_support
         - bash <(curl -s https://codecov.io/bash)
