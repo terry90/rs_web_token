@@ -125,4 +125,13 @@ mod tests {
         let token1: WebToken = token.0.parse().unwrap();
         assert_eq!(token, token1);
     }
+
+    #[test]
+    fn it_is_debug_display() {
+        let s_token = "jfqgg1HhsYaBQtGqSLfISkIjIAwcI27bFAqS6Z3SKiiANdV9Ra25j9QzIIMTKT5l";
+        let token: WebToken = s_token.parse().unwrap();
+
+        assert_eq!(format!("{:?}", token), s_token);
+        assert_eq!(format!("{}", token), s_token);
+    }
 }
