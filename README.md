@@ -2,6 +2,9 @@
 
 Easy to use WebToken for rust
 
+[![Build Status](https://travis-ci.org/terry90/rs_web_token.svg?branch=master)](https://travis-ci.org/terry90/rs_web_token)
+[![codecov](https://codecov.io/gh/terry90/rs_web_token/branch/master/graph/badge.svg)](https://codecov.io/gh/terry90/rs_web_token)
+
 ## Usage
 
 ```rust
