@@ -1,6 +1,6 @@
 [package]
 name = "web_token"
-version = "0.3.0"
+version = "1.0.0"
 authors = ["Terry Raimondo <terry.raimondo@gmail.com>"]
 description = "Easy to use Web Token for Rust"
 license = "MIT"
