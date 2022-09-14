@@ -26,10 +26,20 @@ pub struct WebToken(String);
 
 impl WebToken {
     pub fn new() -> Self {
-        let mut rng = thread_rng();
+        let rng = thread_rng();
 
-        let s: String = rng.sample_iter(&Alphanumeric).take(64).collect();
+        let s: String = rng
+            .sample_iter(&Alphanumeric)
+            .take(64)
+            .map(char::from)
+            .collect();
         WebToken(s)
+    }
+}
+
+impl Default for WebToken {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
@@ -162,7 +172,8 @@ mod tests {
         let token = WebTokenTest {
             token: WebToken::from_str(
                 "AmJ8JS6Jt47UiV8QaCmpgBdWawLeHVuKpbReOV6uKPLqnnfbqbMAXAXxTnWYZ7RR",
-            ).unwrap(),
+            )
+            .unwrap(),
         };
 
         let serialized = serde_json::to_string(&token).unwrap();
